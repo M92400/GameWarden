@@ -349,7 +349,7 @@ footer {
     </div>
 
     <div class="card-title">Register An Account</div>
-    <p class="card-sub">Log in to your GameWarden dashboard to manage your games, bans, and detection settings.</p>
+    <p class="card-sub">Connect your Discord account to get started - no password needed.</p>
 
     <!-- Discord -->
     <a href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=identify%20email" class="btn-discord">
@@ -373,58 +373,8 @@ footer {
     <a href="#">Terms</a>
     <a href="#">Support</a>
   </div>
-  <div class="footer-copy">© 2025 GameWarden. All rights reserved.</div>
+  <div class="footer-copy">© 2026 GameWarden. All rights reserved.</div>
 </footer>
 
-<script>
-const pwInput  = document.getElementById('password');
-const togglePw = document.getElementById('toggle-pw');
-const eyeIcon  = document.getElementById('eye-icon');
-const eyeOpen   = `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>`;
-const eyeClosed = `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/>`;
-togglePw.addEventListener('click', () => {
-  const show = pwInput.type === 'password';
-  pwInput.type = show ? 'text' : 'password';
-  eyeIcon.innerHTML = show ? eyeClosed : eyeOpen;
-});
-
-const btn           = document.getElementById('btn-submit');
-const emailField    = document.getElementById('field-email');
-const passwordField = document.getElementById('field-password');
-const emailInput    = document.getElementById('email');
-const errorBanner   = document.getElementById('error-banner');
-
-function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-
-function clearErrors() {
-  emailField.classList.remove('error');
-  passwordField.classList.remove('error');
-  errorBanner.classList.remove('visible');
-}
-
-emailInput.addEventListener('input', () => emailField.classList.remove('error'));
-pwInput.addEventListener('input',    () => passwordField.classList.remove('error'));
-
-btn.addEventListener('click', () => {
-  clearErrors();
-  const email = emailInput.value.trim();
-  const pass  = pwInput.value;
-  let ok = true;
-
-  if (!isValidEmail(email))   { emailField.classList.add('error');    ok = false; }
-  if (pass.length < 1)        { passwordField.classList.add('error'); ok = false; }
-  if (!ok) return;
-
-  btn.classList.add('loading');
-  setTimeout(() => {
-    btn.classList.remove('loading');
-    errorBanner.classList.add('visible');
-  }, 1400);
-});
-
-[emailInput, pwInput].forEach(el =>
-  el.addEventListener('keydown', e => { if (e.key === 'Enter') btn.click(); })
-);
-</script>
 </body>
 </html>
