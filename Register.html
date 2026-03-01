@@ -37,7 +37,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ── Background ── */
 .bg-glow-left {
   position: fixed; top: -10%; left: -10%;
   width: 600px; height: 600px;
@@ -64,7 +63,6 @@ body {
   mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
 }
 
-/* ── Nav ── */
 nav {
   position: relative; z-index: 10;
   display: flex; align-items: center; justify-content: space-between;
@@ -97,14 +95,12 @@ nav {
 }
 .nav-right a:hover { opacity: 0.8; }
 
-/* ── Main ── */
 main {
   flex: 1; display: flex; align-items: center; justify-content: center;
   padding: 60px 20px;
   position: relative; z-index: 1;
 }
 
-/* ── Card ── */
 .card {
   width: 100%; max-width: 420px;
   background: var(--surface);
@@ -130,7 +126,6 @@ main {
   pointer-events: none;
 }
 
-/* ── Card header ── */
 .card-icon {
   width: 52px; height: 52px; border-radius: 13px;
   background: linear-gradient(135deg, #ff3333, #b30000);
@@ -156,7 +151,6 @@ main {
   animation: fadeUp 0.4s 0.2s ease both;
 }
 
-/* ── Discord button ── */
 .btn-discord {
   width: 100%; display: flex; align-items: center; justify-content: center; gap: 11px;
   padding: 13px 24px; border-radius: 10px;
@@ -183,7 +177,6 @@ main {
 .btn-discord:active { transform: translateY(0); }
 .btn-discord svg { width: 20px; height: 20px; flex-shrink: 0; }
 
-/* ── OR divider ── */
 .or-divider {
   display: flex; align-items: center; gap: 12px;
   margin-bottom: 22px;
@@ -192,7 +185,6 @@ main {
 .or-divider-line { flex: 1; height: 1px; background: var(--border); }
 .or-divider-text { font-size: 0.7rem; color: var(--text-3); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
 
-/* ── Error banner ── */
 .error-banner {
   display: none; align-items: center; gap: 10px;
   background: var(--error-dim); border: 1px solid rgba(255,85,85,0.2);
@@ -209,7 +201,6 @@ main {
   100% { transform: translateX(0); opacity: 1; }
 }
 
-/* ── Form fields ── */
 .form { display: flex; flex-direction: column; gap: 14px; animation: fadeUp 0.4s 0.3s ease both; }
 
 .field { display: flex; flex-direction: column; gap: 6px; }
@@ -241,7 +232,6 @@ main {
 .field-error-msg { font-size: 0.72rem; color: var(--error); display: none; }
 .field.error .field-error-msg { display: block; }
 
-/* Password toggle */
 .toggle-pw {
   position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
   background: none; border: none; cursor: pointer; padding: 4px;
@@ -251,7 +241,6 @@ main {
 .toggle-pw:hover { color: var(--text-2); }
 .toggle-pw svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-/* Remember + Forgot */
 .field-row {
   display: flex; align-items: center; justify-content: space-between;
   margin-top: 14px;
@@ -271,7 +260,6 @@ main {
 .forgot { font-size: 0.8rem; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
 .forgot:hover { color: var(--accent); }
 
-/* Submit */
 .btn-submit {
   width: 100%; padding: 13px; border-radius: 10px;
   background: var(--accent); color: #fff;
@@ -303,7 +291,6 @@ main {
 .btn-submit.loading .btn-label { display: none; }
 .btn-submit.loading .spinner { display: block; }
 
-/* Sign up link */
 .signup-link {
   text-align: center; margin-top: 22px;
   font-size: 0.82rem; color: var(--text-3);
@@ -317,7 +304,6 @@ main {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Footer ── */
 footer {
   position: relative; z-index: 1;
   border-top: 1px solid var(--border);
@@ -391,7 +377,6 @@ footer {
 </footer>
 
 <script>
-// ── Password toggle ──────────────────────────────────────────────────────────
 const pwInput  = document.getElementById('password');
 const togglePw = document.getElementById('toggle-pw');
 const eyeIcon  = document.getElementById('eye-icon');
@@ -403,7 +388,6 @@ togglePw.addEventListener('click', () => {
   eyeIcon.innerHTML = show ? eyeClosed : eyeOpen;
 });
 
-// ── Form validation ──────────────────────────────────────────────────────────
 const btn           = document.getElementById('btn-submit');
 const emailField    = document.getElementById('field-email');
 const passwordField = document.getElementById('field-password');
@@ -431,7 +415,6 @@ btn.addEventListener('click', () => {
   if (pass.length < 1)        { passwordField.classList.add('error'); ok = false; }
   if (!ok) return;
 
-  // Simulate login request - replace with real auth
   btn.classList.add('loading');
   setTimeout(() => {
     btn.classList.remove('loading');
