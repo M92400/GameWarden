@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameWarden - Privacy Policy</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cabinet+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0808;
+  --bg-2: #110a0a;
+  --surface: #1a0f0f;
+  --surface-2: #201414;
+  --surface-3: #2a1a1a;
+  --border: rgba(255,255,255,0.07);
+  --border-bright: rgba(255,255,255,0.12);
+  --text: #f8f0f0;
+  --text-2: #aa8888;
+  --text-3: #664444;
+  --accent: #ff3333;
+  --accent-dim: rgba(255,51,51,0.12);
+  --accent-glow: rgba(255,51,51,0.30);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 3px; }
+
+.bg-glow {
+  position: fixed; top: -10%; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 600px;
+  background: radial-gradient(ellipse, rgba(255,51,51,0.045) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+}
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5vw; height: 62px;
+  background: rgba(12,8,8,0.85);
+  backdrop-filter: blur(20px) saturate(1.5);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; color: var(--text);
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 900; font-size: 1.15rem; letter-spacing: -0.02em;
+}
+.logo-mark {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: linear-gradient(135deg, #ff3333, #b30000);
+  display: grid; place-items: center;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 900; font-size: 0.82rem; color: #fff;
+  letter-spacing: -0.02em;
+  box-shadow: 0 0 18px rgba(255,51,51,0.45);
+}
+.nav-back {
+  display: flex; align-items: center; gap: 6px;
+  text-decoration: none; color: var(--text-2);
+  font-size: 0.83rem; font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-back:hover { color: var(--text); }
+.nav-back svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+main {
+  position: relative; z-index: 1;
+  max-width: 960px; margin: 0 auto;
+  padding: 120px 5vw 100px;
+}
+
+.pp-header {
+  margin-bottom: 56px;
+  animation: fadeUp 0.5s ease both;
+}
+.pp-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(255,51,51,0.25);
+  color: var(--accent);
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 100px; margin-bottom: 20px;
+}
+.pp-title {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900; letter-spacing: -0.04em; line-height: 1.05;
+  margin-bottom: 14px;
+}
+.pp-meta {
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  font-size: 0.82rem; color: var(--text-3);
+}
+.pp-meta-item { display: flex; align-items: center; gap: 6px; }
+.pp-meta-item svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.pp-intro {
+  margin-top: 20px; padding: 20px 22px;
+  background: var(--surface); border: 1px solid var(--border-bright);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  font-size: 0.9rem; color: var(--text-2); line-height: 1.7;
+}
+
+.pp-section {
+  margin-bottom: 12px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  animation: fadeUp 0.5s ease both;
+  transition: border-color 0.2s;
+}
+.pp-section:hover { border-color: var(--border-bright); }
+
+.pp-section-header {
+  display: flex; align-items: center; gap: 16px;
+  padding: 22px 26px; cursor: pointer;
+  user-select: none;
+}
+.pp-section-num {
+  width: 30px; height: 30px; border-radius: 8px;
+  background: var(--accent-dim); border: 1px solid rgba(255,51,51,0.2);
+  display: grid; place-items: center; flex-shrink: 0;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 0.78rem; font-weight: 900; color: var(--accent);
+}
+.pp-section-title {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 1rem; font-weight: 800; letter-spacing: -0.02em;
+  flex: 1;
+}
+.pp-chevron {
+  width: 18px; height: 18px; flex-shrink: 0;
+  stroke: var(--text-3); fill: none; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+  transition: transform 0.25s, stroke 0.2s;
+}
+.pp-section.open .pp-chevron { transform: rotate(180deg); stroke: var(--accent); }
+
+.pp-section-body {
+  display: none; padding: 0 26px 24px;
+  border-top: 1px solid var(--border);
+}
+.pp-section.open .pp-section-body { display: block; }
+
+.pp-section-body p {
+  font-size: 0.875rem; color: var(--text-2); line-height: 1.75;
+  margin-top: 18px;
+}
+.pp-section-body .sub-item {
+  margin-top: 14px; padding: 14px 16px;
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 9px;
+}
+.sub-item-title {
+  font-size: 0.8rem; font-weight: 700; color: var(--text);
+  margin-bottom: 5px; display: flex; align-items: center; gap: 7px;
+}
+.sub-item-title::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
+}
+.sub-item p {
+  font-size: 0.845rem; color: var(--text-2); line-height: 1.65; margin-top: 0;
+}
+
+.pp-footer-note {
+  margin-top: 48px; padding: 22px 24px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; text-align: center;
+  animation: fadeUp 0.5s 0.3s ease both;
+}
+.pp-footer-note p { font-size: 0.855rem; color: var(--text-2); line-height: 1.7; }
+.pp-footer-note a {
+  color: var(--accent); text-decoration: none; font-weight: 600;
+  transition: opacity 0.2s;
+}
+.pp-footer-note a:hover { opacity: 0.8; }
+
+footer {
+  position: relative; z-index: 1;
+  background: var(--bg); border-top: 1px solid var(--border);
+  padding: 28px 5vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+}
+.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-links a { font-size: 0.8rem; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--text-2); }
+.footer-copy { font-size: 0.78rem; color: var(--text-3); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .pp-section-header { padding: 18px 18px; }
+  .pp-section-body { padding: 0 18px 20px; }
+  footer { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="logo-mark">GW</div>
+    GameWarden
+  </a>
+  <a class="nav-back" href="index.html">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Home
+  </a>
+</nav>
+
+<main>
+  <div class="pp-header">
+    <div class="pp-eyebrow">Legal</div>
+    <div class="pp-title">Privacy Policy</div>
+    <div class="pp-meta">
+      <div class="pp-meta-item">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Last updated: February 10, 2026
+      </div>
+      <div class="pp-meta-item">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        GameWarden Anti-Cheat
+      </div>
+    </div>
+    <div class="pp-intro">
+      This Privacy Policy explains how GameWarden collects, uses, stores, and protects your information. We value your privacy and only collect the data strictly necessary to secure your experience, verify your license, and improve our detection capabilities. By using GameWarden, you agree to the practices described in this policy.
+    </div>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="pp-section open">
+    <div class="pp-section-header" onclick="toggleSection(this)">
+      <div class="pp-section-num">1</div>
+      <div class="pp-section-title">Data We Collect</div>
+      <svg class="pp-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="pp-section-body">
+      <p>To prevent abuse of our licensing system - including multi-key usage, account sharing, and service bypasses - GameWarden collects specific identifiers. This data is used strictly for authentication and service integrity. We collect the minimum data required to operate the service and no more.</p>
+      <div class="sub-item">
+        <div class="sub-item-title">Discord ID</div>
+        <p>Collected via Discord OAuth during registration. Used to link your license to your account, verify your identity, and manage support access. We do not store your Discord password or access your messages.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Roblox Game ID</div>
+        <p>Collected during setup. Used to verify ownership of the Roblox experience using the service and to scope your license to your specific game. This is not linked to your personal Roblox account.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Email Address</div>
+        <p>Provided during purchase via our payment provider. Used for billing, license key delivery, and account recovery. We do not use your email for marketing without your explicit consent.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Billing Information</div>
+        <p>Payment details are processed and stored by our third-party payment provider. GameWarden does not store, handle, or have access to your full card number or banking details at any point.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Detection & Audit Logs</div>
+        <p>GameWarden logs detection events within your game, including player identifiers flagged by the system. These logs are tied to your license and are accessible via your dashboard. They are used to support your ban management and for improving detection accuracy.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="pp-section">
+    <div class="pp-section-header" onclick="toggleSection(this)">
+      <div class="pp-section-num">2</div>
+      <div class="pp-section-title">AI Research & Detection Data</div>
+      <svg class="pp-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="pp-section-body">
+      <p>We are constantly evolving our detection methods to stay ahead of modern exploits. As part of this effort, GameWarden may collect anonymized game-state data to help train and improve our AI-driven detection models.</p>
+      <div class="sub-item">
+        <div class="sub-item-title">Opt-In Only</div>
+        <p>This data collection is entirely optional. Experience owners and developers may choose to opt in via their dashboard settings. It is disabled by default and will never be enabled without your explicit action.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">What Is Collected</div>
+        <p>When opted in, anonymized game-state snapshots may be collected, including movement data, velocity readings, and behavioral patterns. No personally identifiable player information is collected as part of this program.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Purpose</div>
+        <p>This data is used solely to refine our behavioral detection logic and improve the accuracy of distinguishing between legitimate players and automated exploits. It is never sold or shared with third parties.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Opting Out</div>
+        <p>You may opt out at any time via your dashboard settings. Upon opting out, no further game-state data will be collected. Previously collected anonymized data may be retained as part of our training datasets but cannot be attributed back to your account.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="pp-section">
+    <div class="pp-section-header" onclick="toggleSection(this)">
+      <div class="pp-section-num">3</div>
+      <div class="pp-section-title">How We Use Your Data</div>
+      <svg class="pp-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="pp-section-body">
+      <p>Your data is used only for the purposes described in this policy. We do not use it for any purpose beyond operating and improving the GameWarden service.</p>
+      <div class="sub-item">
+        <div class="sub-item-title">No Third-Party Sales</div>
+        <p>We do not sell, rent, lease, or trade your personal data to third-party advertisers, data brokers, or any other commercial entities under any circumstances.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Service Operation</div>
+        <p>Your data is used to authenticate your license, deliver the service, process payments, and provide support. Access is restricted to authorised GameWarden staff only.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Security & Abuse Prevention</div>
+        <p>Certain identifiers may be used to detect and prevent abuse of our licensing system, including account sharing, key reselling, and ban evasion. This is a core function of the service.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Legal Obligations</div>
+        <p>We may disclose your data if required to do so by law, court order, or governmental authority. We will make reasonable efforts to notify you of such a request where legally permitted.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="pp-section">
+    <div class="pp-section-header" onclick="toggleSection(this)">
+      <div class="pp-section-num">4</div>
+      <div class="pp-section-title">Data Retention</div>
+      <svg class="pp-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="pp-section-body">
+      <p>We retain your data only for as long as necessary to deliver the service or fulfil legal and security obligations.</p>
+      <div class="sub-item">
+        <div class="sub-item-title">Active Accounts</div>
+        <p>Data associated with an active license is retained for the duration of your subscription and for a reasonable period after cancellation to support any outstanding queries or disputes.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Blacklist Retention</div>
+        <p>If a license was revoked due to a Terms of Service violation, certain identifiers - including your Discord ID and Roblox Game ID - may be retained in a secure, hashed format to prevent future abuse of the service. This data cannot be used to identify you beyond its role in abuse prevention.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Deletion Requests</div>
+        <p>You may request deletion of your personal data at any time by opening a support ticket in our official Discord server. We will process your request within a reasonable timeframe. Please note that blacklist entries resulting from a terms violation may be retained as described above.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="pp-section">
+    <div class="pp-section-header" onclick="toggleSection(this)">
+      <div class="pp-section-num">5</div>
+      <div class="pp-section-title">Roblox Platform Compliance</div>
+      <svg class="pp-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="pp-section-body">
+      <p>As GameWarden operates within the Roblox ecosystem, we adhere to the data privacy standards set by the Roblox platform in addition to our own policy.</p>
+      <div class="sub-item">
+        <div class="sub-item-title">Roblox Privacy Policy</div>
+        <p>We encourage all users and developers to remain familiar with the Roblox Privacy Policy. Our data practices are designed to be compatible with Roblox's requirements, and we will update our practices if Roblox's standards change in ways that affect our service.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Player Data</div>
+        <p>GameWarden may process Roblox player identifiers as part of its detection and ban management functionality. This data is tied to your license and used solely for the operation of the anti-cheat system within your experience. We do not use player data for any purpose outside of this scope.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="pp-section">
+    <div class="pp-section-header" onclick="toggleSection(this)">
+      <div class="pp-section-num">6</div>
+      <div class="pp-section-title">Your Rights</div>
+      <svg class="pp-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="pp-section-body">
+      <p>You have the following rights regarding your personal data. To exercise any of these rights, open a support ticket in our official Discord server.</p>
+      <div class="sub-item">
+        <div class="sub-item-title">Right to Access</div>
+        <p>You may request a summary of the personal data we hold about you at any time.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Right to Deletion</div>
+        <p>You may request that your personal data be deleted from our active records. As noted in the Data Retention section, certain hashed identifiers may be retained for abuse prevention purposes where a terms violation occurred.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Right to Correction</div>
+        <p>If you believe any data we hold about you is inaccurate, you may request that it be corrected.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Right to Withdraw Consent</div>
+        <p>Where data collection is based on your consent - such as the AI research opt-in - you may withdraw that consent at any time without affecting the lawfulness of processing carried out prior to withdrawal.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 7 -->
+  <div class="pp-section">
+    <div class="pp-section-header" onclick="toggleSection(this)">
+      <div class="pp-section-num">7</div>
+      <div class="pp-section-title">Changes to This Policy</div>
+      <svg class="pp-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="pp-section-body">
+      <p>We reserve the right to update this Privacy Policy at any time. When we do, the "Last Updated" date at the top of this page will be revised.</p>
+      <div class="sub-item">
+        <div class="sub-item-title">Notification</div>
+        <p>We will make reasonable efforts to notify active users of significant changes via our official Discord server. However, it is your responsibility to review this policy periodically.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Continued Use</div>
+        <p>Your continued use of GameWarden after any changes to this policy constitutes your acceptance of the updated terms. If you do not agree to the revised policy, you must stop using the service and cancel your subscription.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pp-footer-note">
+    <p>For any questions about this policy or to exercise your data rights, open a ticket in our <a href="#">Discord server</a>. We do not handle privacy requests through any other channel.</p>
+  </div>
+</main>
+
+<footer>
+  <a class="nav-logo" href="index.html">
+    <div class="logo-mark">GW</div>
+    GameWarden
+  </a>
+  <div class="footer-links">
+    <a href="index.html#features">Features</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="index.html#docs">Docs</a>
+    <a href="Privacy.html">Privacy</a>
+    <a href="TOS.html">Terms</a>
+  </div>
+  <div class="footer-copy">© 2026 GameWarden. All rights reserved.</div>
+</footer>
+
+<script>
+function toggleSection(header) {
+  const section = header.parentElement;
+  section.classList.toggle('open');
+}
+
+document.querySelectorAll('.pp-section').forEach((s, i) => {
+  s.style.animationDelay = (i * 0.07) + 's';
+});
+</script>
+</body>
+</html>

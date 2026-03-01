@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameWarden - Terms of Service</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cabinet+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0808;
+  --bg-2: #110a0a;
+  --surface: #1a0f0f;
+  --surface-2: #201414;
+  --surface-3: #2a1a1a;
+  --border: rgba(255,255,255,0.07);
+  --border-bright: rgba(255,255,255,0.12);
+  --text: #f8f0f0;
+  --text-2: #aa8888;
+  --text-3: #664444;
+  --accent: #ff3333;
+  --accent-dim: rgba(255,51,51,0.12);
+  --accent-glow: rgba(255,51,51,0.30);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 3px; }
+
+.bg-glow {
+  position: fixed; top: -10%; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 600px;
+  background: radial-gradient(ellipse, rgba(255,51,51,0.045) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+}
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5vw; height: 62px;
+  background: rgba(12,8,8,0.85);
+  backdrop-filter: blur(20px) saturate(1.5);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; color: var(--text);
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 900; font-size: 1.15rem; letter-spacing: -0.02em;
+}
+.logo-mark {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: linear-gradient(135deg, #ff3333, #b30000);
+  display: grid; place-items: center;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 900; font-size: 0.82rem; color: #fff;
+  letter-spacing: -0.02em;
+  box-shadow: 0 0 18px rgba(255,51,51,0.45);
+}
+.nav-back {
+  display: flex; align-items: center; gap: 6px;
+  text-decoration: none; color: var(--text-2);
+  font-size: 0.83rem; font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-back:hover { color: var(--text); }
+.nav-back svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+main {
+  position: relative; z-index: 1;
+  max-width: 960px; margin: 0 auto;
+  padding: 120px 5vw 100px;
+}
+
+.tos-header {
+  margin-bottom: 56px;
+  animation: fadeUp 0.5s ease both;
+}
+.tos-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(255,51,51,0.25);
+  color: var(--accent);
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 100px; margin-bottom: 20px;
+}
+.tos-title {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900; letter-spacing: -0.04em; line-height: 1.05;
+  margin-bottom: 14px;
+}
+.tos-meta {
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  font-size: 0.82rem; color: var(--text-3);
+}
+.tos-meta-item { display: flex; align-items: center; gap: 6px; }
+.tos-meta-item svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.tos-intro {
+  margin-top: 20px; padding: 20px 22px;
+  background: var(--surface); border: 1px solid var(--border-bright);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  font-size: 0.9rem; color: var(--text-2); line-height: 1.7;
+}
+
+.tos-section {
+  margin-bottom: 12px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  animation: fadeUp 0.5s ease both;
+  transition: border-color 0.2s;
+}
+.tos-section:hover { border-color: var(--border-bright); }
+
+.tos-section-header {
+  display: flex; align-items: center; gap: 16px;
+  padding: 22px 26px; cursor: pointer;
+  user-select: none;
+}
+.tos-section-num {
+  width: 30px; height: 30px; border-radius: 8px;
+  background: var(--accent-dim); border: 1px solid rgba(255,51,51,0.2);
+  display: grid; place-items: center; flex-shrink: 0;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 0.78rem; font-weight: 900; color: var(--accent);
+}
+.tos-section-title {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 1rem; font-weight: 800; letter-spacing: -0.02em;
+  flex: 1;
+}
+.tos-chevron {
+  width: 18px; height: 18px; flex-shrink: 0;
+  stroke: var(--text-3); fill: none; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+  transition: transform 0.25s, stroke 0.2s;
+}
+.tos-section.open .tos-chevron { transform: rotate(180deg); stroke: var(--accent); }
+
+.tos-section-body {
+  display: none; padding: 0 26px 24px;
+  border-top: 1px solid var(--border);
+}
+.tos-section.open .tos-section-body { display: block; }
+
+.tos-section-body p {
+  font-size: 0.875rem; color: var(--text-2); line-height: 1.75;
+  margin-top: 18px;
+}
+.tos-section-body .sub-item {
+  margin-top: 14px; padding: 14px 16px;
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 9px;
+}
+.sub-item-title {
+  font-size: 0.8rem; font-weight: 700; color: var(--text);
+  margin-bottom: 5px; display: flex; align-items: center; gap: 7px;
+}
+.sub-item-title::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
+}
+.sub-item p {
+  font-size: 0.845rem; color: var(--text-2); line-height: 1.65; margin-top: 0;
+}
+
+.tos-footer-note {
+  margin-top: 48px; padding: 22px 24px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; text-align: center;
+  animation: fadeUp 0.5s 0.3s ease both;
+}
+.tos-footer-note p { font-size: 0.855rem; color: var(--text-2); line-height: 1.7; }
+.tos-footer-note a {
+  color: var(--accent); text-decoration: none; font-weight: 600;
+  transition: opacity 0.2s;
+}
+.tos-footer-note a:hover { opacity: 0.8; }
+
+footer {
+  position: relative; z-index: 1;
+  background: var(--bg); border-top: 1px solid var(--border);
+  padding: 28px 5vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+}
+.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-links a { font-size: 0.8rem; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--text-2); }
+.footer-copy { font-size: 0.78rem; color: var(--text-3); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .tos-section-header { padding: 18px 18px; }
+  .tos-section-body { padding: 0 18px 20px; }
+  footer { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="logo-mark">GW</div>
+    GameWarden
+  </a>
+  <a class="nav-back" href="index.html">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Home
+  </a>
+</nav>
+
+<main>
+  <div class="tos-header">
+    <div class="tos-eyebrow">Legal</div>
+    <div class="tos-title">Terms of Service</div>
+    <div class="tos-meta">
+      <div class="tos-meta-item">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Last updated: February 2026
+      </div>
+      <div class="tos-meta-item">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        GameWarden Anti-Cheat
+      </div>
+    </div>
+    <div class="tos-intro">
+      Welcome to GameWarden. By purchasing a license, accessing our software, or participating in our testing program, you agree to be bound by the following terms in full. If you do not agree to these terms, you may not use GameWarden. These terms apply to all users including paying customers, volunteer testers, and anyone who accesses the service in any capacity.
+    </div>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="tos-section open">
+    <div class="tos-section-header" onclick="toggleSection(this)">
+      <div class="tos-section-num">1</div>
+      <div class="tos-section-title">Licensing & Access</div>
+      <svg class="tos-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tos-section-body">
+      <p>GameWarden is provided via a month-to-month license key system. Access to the software is conditional on your continued compliance with these terms.</p>
+      <div class="sub-item">
+        <div class="sub-item-title">License Grant</div>
+        <p>Upon payment, you are granted a limited, non-exclusive, non-transferable, revocable license to use the GameWarden software solely within the Roblox platform for the duration of your active billing cycle. This license does not constitute ownership of the software or any of its components.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">License Scope</div>
+        <p>Your license is valid for use in your own Roblox experiences only. It may not be used on behalf of, or transferred to, any third party. Each license key corresponds to a single account and may not be shared across multiple users or organisations.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Renewal & Expiry</div>
+        <p>Licenses are billed on a monthly cycle. Failure to renew before the end of your billing period will result in immediate expiration of access. GameWarden bears no responsibility for any lapse in protection resulting from a failure to renew.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Revocation</div>
+        <p>We reserve the right to revoke or void any license key at any time, with or without prior notice, in cases including but not limited to: security breaches, suspected misuse, violation of these terms, or fraudulent payment. No refund will be issued in cases of revocation due to a terms violation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="tos-section">
+    <div class="tos-section-header" onclick="toggleSection(this)">
+      <div class="tos-section-num">2</div>
+      <div class="tos-section-title">Payments & Refunds</div>
+      <svg class="tos-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tos-section-body">
+      <p>All payments are processed securely through our third-party payment provider. By completing a purchase, you authorise the charge for the selected plan.</p>
+      <div class="sub-item">
+        <div class="sub-item-title">No Refunds</div>
+        <p>All sales are final. We do not offer refunds, partial refunds, or credits for unused portions of a billing cycle under any circumstances. By completing your purchase, you acknowledge and accept this policy.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Cancellation</div>
+        <p>You may cancel your subscription at any time. Cancellation will take effect at the end of your current billing cycle - you will retain access until that date and will not be charged again. Cancellation does not entitle you to a refund for the current period.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Disputes</div>
+        <p>If you believe a charge has been made in error, you must contact us via our official support server before initiating any chargeback or payment dispute. Initiating a chargeback without first contacting us may result in immediate and permanent termination of your account and license.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Pricing Changes</div>
+        <p>We reserve the right to change our pricing at any time. Any price changes will take effect at the start of your next billing cycle. We will make reasonable efforts to notify active subscribers in advance of any changes.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="tos-section">
+    <div class="tos-section-header" onclick="toggleSection(this)">
+      <div class="tos-section-num">3</div>
+      <div class="tos-section-title">Usage Restrictions</div>
+      <svg class="tos-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tos-section-body">
+      <p>By using GameWarden, you agree not to engage in any of the following. Violation of any restriction may result in immediate license revocation without refund.</p>
+      <div class="sub-item">
+        <div class="sub-item-title">No Reverse Engineering</div>
+        <p>You may not attempt to reverse-engineer, decompile, disassemble, decrypt, or otherwise derive the source code or underlying logic of the GameWarden loader or any associated software component.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">No Redistribution</div>
+        <p>You may not share, sell, sublicense, lend, or otherwise transfer your license key or access to any third party. Each license is strictly personal to the account that purchased it.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">No Circumvention</div>
+        <p>You may not attempt to bypass, disable, or interfere with any part of the GameWarden system, including but not limited to license validation, detection logic, or access controls.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Platform Compliance</div>
+        <p>You must use GameWarden in full compliance with the Roblox Terms of Service and Community Standards. Any use that violates Roblox's policies is also a violation of these terms. We are not responsible for any actions Roblox takes against your account or experience.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">No Harmful Use</div>
+        <p>You may not use GameWarden to target, harass, or unjustly ban players. The service is intended solely as a legitimate anti-cheat tool. Misuse of detection or ban capabilities is a violation of these terms.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="tos-section">
+    <div class="tos-section-header" onclick="toggleSection(this)">
+      <div class="tos-section-num">4</div>
+      <div class="tos-section-title">Volunteer Tester Program</div>
+      <svg class="tos-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tos-section-body">
+      <p>Our tester program allows community members to help us identify and respond to new exploits. Participation is entirely voluntary and subject to the following conditions.</p>
+      <div class="sub-item">
+        <div class="sub-item-title">Employment Status</div>
+        <p>Testers are not employees, contractors, or agents of GameWarden. Participation does not create any employment relationship, and testers are not entitled to monetary compensation, benefits, or any form of remuneration.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Participation Expectations</div>
+        <p>While attendance is not mandatory at every session, testers are expected to demonstrate a reasonable and consistent level of engagement with the program. What constitutes reasonable engagement is determined solely at our discretion.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Removal from Program</div>
+        <p>We reserve the right to remove any tester from the program at any time and for any reason, including but not limited to: consistent inactivity, repeated rejoining and leaving, conduct unbecoming of a community member, or any violation of these terms. Removal carries no right of appeal unless explicitly stated otherwise.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Confidentiality</div>
+        <p>Testers may be exposed to unreleased features, internal tooling, or details about known exploits. This information is confidential and must not be shared publicly or with any third party without explicit written permission from GameWarden.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="tos-section">
+    <div class="tos-section-header" onclick="toggleSection(this)">
+      <div class="tos-section-num">5</div>
+      <div class="tos-section-title">Data & Privacy</div>
+      <svg class="tos-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tos-section-body">
+      <p>We collect and process only the data necessary to operate the service. By using GameWarden, you consent to this.</p>
+      <div class="sub-item">
+        <div class="sub-item-title">Data Collected</div>
+        <p>We may collect your Discord account information obtained via OAuth, your Roblox Game ID, detection logs, and billing information processed via our payment provider. We do not store full payment card details.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Data Usage</div>
+        <p>Collected data is used solely for the purpose of operating and improving the GameWarden service. We do not sell or share your data with third parties except where required to deliver the service - for example, our payment processor - or where required by law.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Data Retention</div>
+        <p>We retain account and detection log data for as long as your account is active, and for a reasonable period thereafter for legal and operational purposes. You may request deletion of your data by opening a support ticket in our official server.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="tos-section">
+    <div class="tos-section-header" onclick="toggleSection(this)">
+      <div class="tos-section-num">6</div>
+      <div class="tos-section-title">Disclaimers & Limitation of Liability</div>
+      <svg class="tos-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tos-section-body">
+      <p>GameWarden is provided "as-is" and "as available" without warranties of any kind, express or implied.</p>
+      <div class="sub-item">
+        <div class="sub-item-title">No Guarantee of Complete Protection</div>
+        <p>While we strive to provide the most effective anti-cheat solution possible on the Roblox platform, we do not guarantee that GameWarden will detect or prevent 100% of exploits. The cheating landscape evolves constantly and no system can provide absolute protection.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">No Liability for Roblox Actions</div>
+        <p>We are not responsible for any moderation actions, warnings, demotions, or bans imposed by Roblox on your account or experience, regardless of whether they are related to your use of GameWarden.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">No Liability for Losses</div>
+        <p>To the fullest extent permitted by law, GameWarden shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of or inability to use the service, including but not limited to loss of revenue, data, or players.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Service Availability</div>
+        <p>We do not guarantee uninterrupted or error-free operation of the service. We reserve the right to perform maintenance, updates, or modifications at any time, which may temporarily affect availability. We are not liable for any losses resulting from downtime.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 7 -->
+  <div class="tos-section">
+    <div class="tos-section-header" onclick="toggleSection(this)">
+      <div class="tos-section-num">7</div>
+      <div class="tos-section-title">Changes to These Terms</div>
+      <svg class="tos-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tos-section-body">
+      <p>We reserve the right to update or modify these terms at any time. When we do, the "Last Updated" date at the top of this page will be revised.</p>
+      <div class="sub-item">
+        <div class="sub-item-title">Notification</div>
+        <p>We will make reasonable efforts to notify active users of significant changes via our official Discord server. However, it is your responsibility to review these terms periodically.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Continued Use</div>
+        <p>Your continued use of GameWarden after any changes to these terms constitutes your acceptance of the updated terms. If you do not agree to the revised terms, you must stop using the service and cancel your subscription.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 8 -->
+  <div class="tos-section">
+    <div class="tos-section-header" onclick="toggleSection(this)">
+      <div class="tos-section-num">8</div>
+      <div class="tos-section-title">Contact & Support</div>
+      <svg class="tos-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tos-section-body">
+      <p>For any questions, concerns, or disputes regarding these terms or your license, please contact us through the appropriate channel below.</p>
+      <div class="sub-item">
+        <div class="sub-item-title">Support Tickets</div>
+        <p>All support requests, including license queries, revocation appeals, and billing concerns, must be submitted via a support ticket in our official Discord server. We do not offer support through any other channel.</p>
+      </div>
+      <div class="sub-item">
+        <div class="sub-item-title">Response Times</div>
+        <p>We aim to respond to all support tickets in a timely manner, however we do not guarantee specific response times. Urgent issues will be prioritised where possible.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tos-footer-note">
+    <p>By using GameWarden you confirm that you are at least 13 years of age, that you have read and understood these terms in full, and that you agree to be bound by them. For support, open a ticket in our <a href="#">Discord server</a>.</p>
+  </div>
+</main>
+
+<footer>
+  <a class="nav-logo" href="index.html">
+    <div class="logo-mark">GW</div>
+    GameWarden
+  </a>
+  <div class="footer-links">
+    <a href="index.html#features">Features</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="index.html#docs">Docs</a>
+    <a href="Privacy.html">Privacy</a>
+    <a href="TOS.html">Terms</a>
+  </div>
+  <div class="footer-copy">© 2026 GameWarden. All rights reserved.</div>
+</footer>
+
+<script>
+function toggleSection(header) {
+  const section = header.parentElement;
+  section.classList.toggle('open');
+}
+
+document.querySelectorAll('.tos-section').forEach((s, i) => {
+  s.style.animationDelay = (i * 0.07) + 's';
+});
+</script>
+</body>
+</html>
