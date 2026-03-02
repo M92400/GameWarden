@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameWarden — Restricted Access</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cabinet+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0808; --surface: #1a0f0f;
+  --border: rgba(255,255,255,0.07); --border-bright: rgba(255,255,255,0.13);
+  --text: #f8f0f0; --text-2: #aa8888; --text-3: #664444;
+  --accent: #ff3333; --accent-dim: rgba(255,51,51,0.12); --accent-glow: rgba(255,51,51,0.30);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; align-items: center; justify-content: center; }
+.bg-glow-left { position: fixed; top: -10%; left: -10%; width: 600px; height: 600px; background: radial-gradient(ellipse, rgba(255,51,51,0.055) 0%, transparent 65%); pointer-events: none; animation: driftLeft 12s ease-in-out infinite alternate; }
+.bg-glow-right { position: fixed; bottom: -10%; right: -5%; width: 500px; height: 500px; background: radial-gradient(ellipse, rgba(255,51,51,0.035) 0%, transparent 65%); pointer-events: none; animation: driftRight 14s ease-in-out infinite alternate; }
+@keyframes driftLeft { from { transform: translate(0,0); } to { transform: translate(40px,30px); } }
+@keyframes driftRight { from { transform: translate(0,0); } to { transform: translate(-30px,-20px); } }
+.bg-grid { position: fixed; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.016) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.016) 1px, transparent 1px); background-size: 64px 64px; pointer-events: none; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%); }
+.card { position: relative; z-index: 1; width: 100%; max-width: 440px; margin: 20px; background: var(--surface); border: 1px solid var(--border-bright); border-radius: 20px; padding: 36px 38px 32px; box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 40px 80px rgba(0,0,0,0.55); animation: cardIn 0.45s cubic-bezier(0.22,1,0.36,1) both; }
+@keyframes cardIn { from { opacity: 0; transform: translateY(20px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.card::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,51,51,0.4), transparent); }
+.warning-icon { width: 52px; height: 52px; background: var(--accent-dim); border: 1px solid rgba(255,51,51,0.25); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; animation: iconGlow 2.5s ease-in-out infinite; }
+@keyframes iconGlow { 0%,100% { box-shadow: 0 0 14px rgba(255,51,51,0.15); } 50% { box-shadow: 0 0 28px rgba(255,51,51,0.35); } }
+.warning-icon svg { width: 24px; height: 24px; stroke: var(--accent); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.restricted-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-dim); border: 1px solid rgba(255,51,51,0.2); border-radius: 100px; padding: 3px 11px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.restricted-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); animation: blink 1.2s step-end infinite; }
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+.card h1 { font-family: 'Cabinet Grotesk', sans-serif; font-size: 1.6rem; font-weight: 900; letter-spacing: -0.035em; line-height: 1.1; margin-bottom: 8px; }
+.card h1 span { color: var(--accent); }
+.subtitle { font-size: 0.81rem; color: var(--text-2); line-height: 1.6; margin-bottom: 20px; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 20px; }
+.threat-box { background: rgba(255,51,51,0.06); border: 1px solid rgba(255,51,51,0.18); border-left: 3px solid var(--accent); border-radius: 10px; padding: 12px 14px; margin-bottom: 20px; }
+.threat-box-title { display: flex; align-items: center; gap: 7px; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+.threat-box-title svg { width: 11px; height: 11px; stroke: var(--accent); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.threat-box p { font-size: 0.79rem; color: var(--text-2); line-height: 1.6; }
+.threat-box p strong { color: var(--text); font-weight: 600; }
+.checklist { list-style: none; margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px; }
+.checklist li { display: flex; align-items: flex-start; gap: 9px; font-size: 0.8rem; color: var(--text-2); line-height: 1.45; }
+.check-icon { width: 15px; height: 15px; border-radius: 4px; background: var(--accent-dim); border: 1px solid rgba(255,51,51,0.25); flex-shrink: 0; margin-top: 1px; display: grid; place-items: center; }
+.check-icon svg { width: 8px; height: 8px; stroke: var(--accent); fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.btn-continue { width: 100%; padding: 12px; background: var(--accent); color: #fff; border: none; border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 0.86rem; font-weight: 700; cursor: pointer; transition: all 0.2s; margin-bottom: 8px; box-shadow: 0 0 22px var(--accent-glow); display: flex; align-items: center; justify-content: center; gap: 8px; }
+.btn-continue:hover { background: #ff5555; transform: translateY(-1px); box-shadow: 0 0 32px var(--accent-glow); }
+.btn-continue svg { width: 13px; height: 13px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.btn-leave { display: flex; align-items: center; justify-content: center; width: 100%; padding: 11px; background: transparent; color: var(--text-3); border: 1px solid var(--border); border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 0.83rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+.btn-leave:hover { color: var(--text-2); border-color: var(--border-bright); }
+.ip-log { margin-top: 14px; text-align: center; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.65rem; color: var(--text-3); letter-spacing: 0.04em; min-height: 14px; animation: flicker 4s ease-in-out infinite; }
+@keyframes flicker { 0%,94%,100% { opacity: 0.5; color: var(--text-3); } 97% { opacity: 1; color: var(--accent); } }
+</style>
+</head>
+<body>
+<div class="bg-glow-left"></div>
+<div class="bg-glow-right"></div>
+<div class="bg-grid"></div>
+<div class="card">
+  <div class="warning-icon">
+    <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+  </div>
+  <div class="restricted-badge">Restricted Area</div>
+  <h1>Authorised<br><span>Personnel Only</span></h1>
+  <p class="subtitle">This panel is exclusively reserved for GameWarden owners and administrators. Unauthorised access is a serious violation and will be acted upon immediately.</p>
+  <hr class="divider">
+  <div class="threat-box">
+    <div class="threat-box-title">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Legal Warning
+    </div>
+    <p>Any <strong>unauthorised access, attempted breach, or misuse</strong> of this panel is logged with your IP, timestamp, and session fingerprint. This data <strong>will be reported to your internet provider</strong> and relevant authorities. Violations may result in permanent bans, civil liability, and criminal prosecution under the <strong>Computer Misuse Act 1990</strong>.</p>
+  </div>
+  <ul class="checklist">
+    <li><div class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>I am an authorised GameWarden owner or administrator</li>
+    <li><div class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>I understand this session is being logged and monitored</li>
+    <li><div class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>I accept full legal responsibility for all actions taken here</li>
+  </ul>
+  <button class="btn-continue" onclick="window.location.href='AdminDashboard.html'">
+    <svg viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+    I Understand - Continue to Admin Panel
+  </button>
+  <a class="btn-leave" href="index.html">Leave this page</a>
+  <div class="ip-log" id="ip-log">SESSION LOGGING ACTIVE</div>
+</div>
+
+</body>
+</html>
